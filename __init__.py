@@ -22,6 +22,9 @@ class Server:
         It will display all results.
         If there are 15 results it will increment the page number and do the search again. 
         If there are less than 15 results it will quit.
+
+        It appears that searching for "%" will return fields with blank values as well, so I am commenting out
+        the lines of code that also search for blank emails.
         """
         page=0
         contactNo=0
@@ -48,22 +51,22 @@ class Server:
                 break
         page=0
         query = {'Email': ''}
-        while True:
-            results=self.tableQuery(query, resultsPerPage,page)
-            for contactRecord in results:
-                printString= str(contactNo) + ". Name: "
-                if (contactRecord.has_key("FirstName")):
-                    printString=printString + contactRecord["FirstName"] + " "
-                if (contactRecord.has_key("LastName")):
-                    printString=printString + contactRecord["LastName"] + " "
-                printString = printString + "Email: "
-                if (contactRecord.has_key("Email")):
-                    printString=printString + contactRecord["Email"]
-                printString = printString + "\n"
-                print printString
-                contactNo+=1
-            if (len(results)<resultsPerPage):
-                break        
+#        while True:
+#            results=self.tableQuery(query, resultsPerPage,page)
+#            for contactRecord in results:
+#                printString= str(contactNo) + ". Name: "
+#                if (contactRecord.has_key("FirstName")):
+#                    printString=printString + contactRecord["FirstName"] + " "
+#                if (contactRecord.has_key("LastName")):
+#                    printString=printString + contactRecord["LastName"] + " "
+#                printString = printString + "Email: "
+#                if (contactRecord.has_key("Email")):
+#                    printString=printString + contactRecord["Email"]
+#                printString = printString + "\n"
+#                print printString
+#                contactNo+=1
+#            if (len(results)<resultsPerPage):
+#                break        
 
     def tableQuery(self, query, resultsPerPage, pageNumber, sortedBy="Email", ascending=True, table="Contact", desiredInfo=["FirstName", "LastName", "Email"]):
         return self.connection.DataService.query(self.apiKey, table, resultsPerPage, pageNumber, query, desiredInfo,sortedBy,ascending)
