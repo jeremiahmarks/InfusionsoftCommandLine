@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#This will serve to start the IS command line software, taking care of basic imports etc. 
+#This will serve to start the IS command line software, taking care of basic imports etc.
 
 import xmlrpclib
 
@@ -16,11 +16,11 @@ class Server:
     def getAllContacts(self):
         """
         This method will do an initial search for all contacts that have an email address.
-        It will display all results. 
-        If there are 15 results it will increment the page number and do the search again. 
+        It will display all results.
+        If there are 15 results it will increment the page number and do the search again.
         If there are less than 15 results it will set the page number to zero then search for all contacts without an email address
         It will display all results.
-        If there are 15 results it will increment the page number and do the search again. 
+        If there are 15 results it will increment the page number and do the search again.
         If there are less than 15 results it will quit.
 
         It appears that searching for "%" will return fields with blank values as well, so I am commenting out
@@ -66,10 +66,30 @@ class Server:
 #                print printString
 #                contactNo+=1
 #            if (len(results)<resultsPerPage):
-#                break        
+#                break
 
     def tableQuery(self, query, resultsPerPage, pageNumber, sortedBy="Email", ascending=True, table="Contact", desiredInfo=["FirstName", "LastName", "Email"]):
         return self.connection.DataService.query(self.apiKey, table, resultsPerPage, pageNumber, query, desiredInfo,sortedBy,ascending)
+
+    def clearScreen(self):
+        print chr(27) + "[2J"
+
+    def getFile(self):
+        self.clearScreen()
+        print ""
+        importingFile=open(raw_input("Please enter location of the file: \n"),"r")
+
+
+    def menuPrint(self):
+        print chr(27) + "[2J"
+        print "*************************************************"
+        print "**  Infusionsoft Command Line                  **"
+        print "**                                             **"
+        print "**   (D)isplay all contacts                    **"
+        print "**   (I)mport Promotions                       **"
+        print "**                                             **"
+        print "*************************************************"
+        self.currentAction=raw_input("Please make a selection: ")
 
 
 def createServer():
