@@ -46,38 +46,9 @@ class Server:
                         else:
                             printString=printString+" "+eachField+": NA"
                     print printString + "\n"
-
-#                    printString= str(contactNo) + ". Name: "
-#                    if (contactRecord.has_key("FirstName")):
-#                        printString=printString + contactRecord["FirstName"] + " "
-#                    if (contactRecord.has_key("LastName")):
-#                        printString=printString + contactRecord["LastName"] + " "
-#                    printString = printString + "Email: "
-#                    if (contactRecord.has_key("Email")):
-#                        printString=printString + contactRecord["Email"]
-#                    printString = printString + "\n"
-#                    print printString
-                    contactNo+=1
             if (len(results)<resultsPerPage):
                 break
-        page=0
-        query = {'Email': ''}
-#        while True:
-#            results=self.tableQuery(query, resultsPerPage,page)
-#            for contactRecord in results:
-#                printString= str(contactNo) + ". Name: "
-#                if (contactRecord.has_key("FirstName")):
-#                    printString=printString + contactRecord["FirstName"] + " "
-#                if (contactRecord.has_key("LastName")):
-#                    printString=printString + contactRecord["LastName"] + " "
-#                printString = printString + "Email: "
-#                if (contactRecord.has_key("Email")):
-#                    printString=printString + contactRecord["Email"]
-#                printString = printString + "\n"
-#                print printString
-#                contactNo+=1
-#            if (len(results)<resultsPerPage):
-#                break
+
 
     def allContactsAllFields(self):
         """
