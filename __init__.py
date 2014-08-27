@@ -100,6 +100,19 @@ class Server:
             return 0
         self.menuPrint()
 
+class Tag:
+    def __init__(self, ID, name, description, category):
+        self.name=name
+        self.ID=ID
+        self.description=description
+        self.categoryID=categoryID
+
+
+class TagCategory:
+    def __init__ (self, ID, name, description):
+        self.name=name
+        self.ID=ID
+        self.description=description
 
 def createServer():
     global appname
